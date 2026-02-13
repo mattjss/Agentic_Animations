@@ -1,38 +1,44 @@
 "use client"
 
 import AnimationCard from "@/components/ui/AnimationCard"
-import CreatePrototype from "@/components/loaders/CreatePrototype"
-import Thinking from "@/components/loaders/Thinking"
-import ReadingFile from "@/components/loaders/ReadingFile"
-import ReadingInput from "@/components/loaders/ReadingInput"
 import Frame from "@/components/loaders/Frame"
-import Spiral from "@/components/loaders/Spiral"
-import Scorners from "@/components/loaders/Scorners"
-import Striangle from "@/components/loaders/Striangle"
+import LTL from "@/components/loaders/LTL"
+import WaveLR from "@/components/loaders/WaveLR"
 import PlusRed from "@/components/loaders/PlusRed"
+import Sparse from "@/components/loaders/Sparse"
+import Scorners from "@/components/loaders/Scorners"
+import LineMid from "@/components/loaders/LineMid"
 import WaveTB from "@/components/loaders/WaveTB"
+import Striangle from "@/components/loaders/Striangle"
+import Spiral from "@/components/loaders/Spiral"
 
 const animations = [
-  { icon: <CreatePrototype />, name: "Create Prototype" },
-  { icon: <Thinking />, name: "Thinking" },
-  { icon: <ReadingFile />, name: "Reading File" },
-  { icon: <ReadingInput />, name: "Reading Input" },
-  { icon: <Frame />, name: "Frame" },
-  { icon: <Spiral />, name: "Spiral" },
-  { icon: <Scorners />, name: "Scorners" },
-  { icon: <Striangle />, name: "Striangle" },
-  { icon: <PlusRed />, name: "PlusRed" },
-  { icon: <WaveTB />, name: "Wave TB" },
+  { icon: <Frame />, state: "Loading", animation: "Frame" },
+  { icon: <WaveTB />, state: "Building", animation: "Wave-TB" },
+  { icon: <WaveLR />, state: "Analyzing", animation: "Wave-LR" },
+  { icon: <LTL />, state: "Processing", animation: "L-TL" },
+  { icon: <PlusRed />, state: "Fetching", animation: "Plus" },
+  { icon: <Sparse />, state: "Compiling", animation: "Sparse" },
+  { icon: <Scorners />, state: "Executing", animation: "Scorners" },
+  { icon: <LineMid />, state: "Syncing", animation: "Line" },
+  { icon: <Striangle />, state: "Streaming", animation: "Striangle" },
+  { icon: <Spiral />, state: "Complete", animation: "Spiral" },
 ]
 
 export default function Home() {
   return (
-    <main className="min-h-screen h-full flex items-center justify-center bg-neutral-900 p-8 overflow-hidden">
+    <main className="w-screen h-screen min-h-screen flex items-center justify-center bg-neutral-900 overflow-hidden p-0 m-0">
       <div
-        className="w-[5000px] h-[5000px] max-w-[calc(100vw-4rem)] max-h-[calc(100vh-4rem)] flex items-center justify-center flex-shrink-0 overflow-hidden min-w-0 min-h-0"
-        style={{ backgroundColor: "#000000" }}
+        className="flex items-center justify-center flex-shrink-0"
+        style={{
+          width: 10000,
+          height: 10000,
+          backgroundColor: "#000000",
+          transform: "scale(calc(100vmin / 10000))",
+          transformOrigin: "center center",
+        }}
       >
-        <div className="flex items-center gap-4 flex-shrink-0" style={{ margin: 32 }}>
+        <div className="flex items-center gap-4 flex-shrink-0">
           <div
             className="flex flex-col gap-4 flex-shrink-0"
             style={{
@@ -43,8 +49,8 @@ export default function Home() {
               borderRadius: 16,
             }}
           >
-            {animations.map(({ icon, name }) => (
-              <AnimationCard key={name} icon={icon} name={name} />
+            {animations.map(({ icon, state, animation }) => (
+              <AnimationCard key={state} icon={icon} state={state} animation={animation} />
             ))}
           </div>
           <div
@@ -57,8 +63,8 @@ export default function Home() {
               borderRadius: 16,
             }}
           >
-            {animations.map(({ icon, name }) => (
-              <AnimationCard key={`${name}-2`} icon={icon} name={name} variant="light" />
+            {animations.map(({ icon, state, animation }) => (
+              <AnimationCard key={`${state}-2`} icon={icon} state={state} animation={animation} variant="light" />
             ))}
           </div>
         </div>

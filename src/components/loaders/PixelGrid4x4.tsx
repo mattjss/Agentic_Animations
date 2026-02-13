@@ -6,9 +6,19 @@ interface PixelGrid4x4Props {
   activePixels: number[]
   partialPixels?: number[]
   className?: string
+  /** Transition duration in ms for opacity changes. Default: 150 */
+  transitionDuration?: number
+  /** CSS timing function for transitions. Default: cubic-bezier(0.4, 0, 0.2, 1) */
+  transitionTiming?: string
 }
 
-export default function PixelGrid4x4({ activePixels, partialPixels = [], className = "" }: PixelGrid4x4Props) {
+export default function PixelGrid4x4({
+  activePixels,
+  partialPixels = [],
+  className = "",
+  transitionDuration = 150,
+  transitionTiming = "cubic-bezier(0.4, 0, 0.2, 1)",
+}: PixelGrid4x4Props) {
   return (
     <div
       className={`flex-shrink-0 ${className}`}
@@ -35,7 +45,7 @@ export default function PixelGrid4x4({ activePixels, partialPixels = [], classNa
               borderRadius: 0,
               opacity,
               boxShadow: isActive || isPartial ? "0 0 4px rgba(255, 255, 255, 0.3)" : "none",
-              transition: "opacity 150ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1)",
+              transition: `opacity ${transitionDuration}ms ${transitionTiming}, box-shadow ${transitionDuration}ms ${transitionTiming}`,
             }}
           />
         )

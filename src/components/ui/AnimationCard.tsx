@@ -4,11 +4,14 @@ import { ReactNode } from "react";
 
 interface AnimationCardProps {
   icon?: ReactNode;
-  name: string;
+  /** Loading state: Loading, Processing, Building, etc. */
+  state: string;
+  /** Animation type: Frame, Line-Mid, etc. */
+  animation: string;
   variant?: "dark" | "light";
 }
 
-export default function AnimationCard({ icon, name, variant = "dark" }: AnimationCardProps) {
+export default function AnimationCard({ icon, state, animation, variant = "dark" }: AnimationCardProps) {
   const isLight = variant === "light";
 
   const shimmerGradient = isLight
@@ -51,7 +54,7 @@ export default function AnimationCard({ icon, name, variant = "dark" }: Animatio
           className="text-xs whitespace-nowrap"
           style={{ color: isLight ? "#3a3a3a" : "#C6C6C6" }}
         >
-          {name}
+          · {animation}
         </span>
       </div>
     </div>

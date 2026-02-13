@@ -35,6 +35,95 @@ body {
   }
 }
 
+/* ─── Pixel animation keyframes (4×4 grid loaders) ─── */
+/* L-TL: 3-pixel L-shape [0,1,4] in top-left, blink 400ms on / 400ms off */
+@keyframes ltl-pulse {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0.1; }
+}
+
+@keyframes line-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes sparse-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@keyframes wave-lr-col0 {
+  0%, 25% { opacity: 1; }
+  25.01%, 100% { opacity: 0.1; }
+}
+@keyframes wave-lr-col1 {
+  0%, 24.99% { opacity: 0.1; }
+  25%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0.1; }
+}
+@keyframes wave-lr-col2 {
+  0%, 49.99% { opacity: 0.1; }
+  50%, 75% { opacity: 1; }
+  75.01%, 100% { opacity: 0.1; }
+}
+@keyframes wave-lr-col3 {
+  0%, 74.99% { opacity: 0.1; }
+  75%, 100% { opacity: 1; }
+}
+
+@keyframes plus-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes scorners-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes wave-tb-row0 {
+  0%, 25% { opacity: 1; }
+  25.01%, 100% { opacity: 0.1; }
+}
+@keyframes wave-tb-row1 {
+  0%, 24.99% { opacity: 0.1; }
+  25%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0.1; }
+}
+@keyframes wave-tb-row2 {
+  0%, 49.99% { opacity: 0.1; }
+  50%, 75% { opacity: 1; }
+  75.01%, 100% { opacity: 0.1; }
+}
+@keyframes wave-tb-row3 {
+  0%, 74.99% { opacity: 0.1; }
+  75%, 100% { opacity: 1; }
+}
+
+@keyframes stri-1 {
+  0%, 25% { opacity: 1; }
+  25.01%, 100% { opacity: 0.1; }
+}
+@keyframes stri-2 {
+  0%, 24.99% { opacity: 0.1; }
+  25%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0.1; }
+}
+@keyframes stri-3 {
+  0%, 49.99% { opacity: 0.1; }
+  50%, 75% { opacity: 1; }
+  75.01%, 100% { opacity: 0.1; }
+}
+@keyframes stri-4 {
+  0%, 74.99% { opacity: 0.1; }
+  75%, 100% { opacity: 1; }
+}
+
+@keyframes spiral-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
 .pixel-loader {
   width: 16px;
   height: 16px;
@@ -48,14 +137,105 @@ body {
 .pixel-loader .pixel {
   width: 3px;
   height: 3px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 0.5px;
-  opacity: 0;
-  transition: opacity 150ms ease, transform 150ms ease;
+  background: currentColor;
+  border-radius: 0;
+  opacity: 0.1;
+  box-shadow: 0 0 8px currentColor;
+  transform-origin: center;
 }
 
 .pixel-loader .pixel.active {
   opacity: 1;
+}
+
+/* Frame: 3-pixel bar along top→right→bottom→left, 8 positions (150ms each) */
+/* Top: [0,1,2] [1,2,3] | Right: [3,7,11] [7,11,15] | Bottom: [15,14,13] [14,13,12] | Left: [12,8,4] [8,4,0] */
+@keyframes frame-p0 { 0%, 12.5% { opacity: 1; } 12.51%, 87.49% { opacity: 0.1; } 87.5%, 100% { opacity: 1; } }
+@keyframes frame-p1 { 0%, 25% { opacity: 1; } 25.01%, 100% { opacity: 0.1; } }
+@keyframes frame-p2 { 0%, 25% { opacity: 1; } 25.01%, 100% { opacity: 0.1; } }
+@keyframes frame-p3 { 12.5%, 37.5% { opacity: 1; } 0%, 12.49% { opacity: 0.1; } 37.51%, 100% { opacity: 0.1; } }
+@keyframes frame-p4 { 75%, 100% { opacity: 1; } 0%, 74.99% { opacity: 0.1; } }
+@keyframes frame-p7 { 25%, 50% { opacity: 1; } 0%, 24.99% { opacity: 0.1; } 50.01%, 100% { opacity: 0.1; } }
+@keyframes frame-p8 { 75%, 100% { opacity: 1; } 0%, 74.99% { opacity: 0.1; } }
+@keyframes frame-p11 { 25%, 50% { opacity: 1; } 0%, 24.99% { opacity: 0.1; } 50.01%, 100% { opacity: 0.1; } }
+@keyframes frame-p12 { 62.5%, 87.5% { opacity: 1; } 0%, 62.49% { opacity: 0.1; } 87.51%, 100% { opacity: 0.1; } }
+@keyframes frame-p13 { 50%, 75% { opacity: 1; } 0%, 49.99% { opacity: 0.1; } 75.01%, 100% { opacity: 0.1; } }
+@keyframes frame-p14 { 50%, 75% { opacity: 1; } 0%, 49.99% { opacity: 0.1; } 75.01%, 100% { opacity: 0.1; } }
+@keyframes frame-p15 { 37.5%, 62.5% { opacity: 1; } 0%, 37.49% { opacity: 0.1; } 62.51%, 100% { opacity: 0.1; } }
+
+.pixel-loader--frame .pixel-0 { animation: frame-p0 1200ms linear infinite; }
+.pixel-loader--frame .pixel-1 { animation: frame-p1 1200ms linear infinite; }
+.pixel-loader--frame .pixel-2 { animation: frame-p2 1200ms linear infinite; }
+.pixel-loader--frame .pixel-3 { animation: frame-p3 1200ms linear infinite; }
+.pixel-loader--frame .pixel-4 { animation: frame-p4 1200ms linear infinite; }
+.pixel-loader--frame .pixel-7 { animation: frame-p7 1200ms linear infinite; }
+.pixel-loader--frame .pixel-8 { animation: frame-p8 1200ms linear infinite; }
+.pixel-loader--frame .pixel-11 { animation: frame-p11 1200ms linear infinite; }
+.pixel-loader--frame .pixel-12 { animation: frame-p12 1200ms linear infinite; }
+.pixel-loader--frame .pixel-13 { animation: frame-p13 1200ms linear infinite; }
+.pixel-loader--frame .pixel-14 { animation: frame-p14 1200ms linear infinite; }
+.pixel-loader--frame .pixel-15 { animation: frame-p15 1200ms linear infinite; }
+
+/* L-TL: L-shape [0,1,4] blinking in top-left corner (800ms cycle: 400 on, 400 off) */
+.pixel-loader--ltl .pixel-0, .pixel-loader--ltl .pixel-1, .pixel-loader--ltl .pixel-4 { animation: ltl-pulse 800ms steps(1) infinite; }
+
+/* Wave-LR: columns sweep left to right */
+.pixel-loader--wave-lr .pixel-0, .pixel-loader--wave-lr .pixel-4, .pixel-loader--wave-lr .pixel-8, .pixel-loader--wave-lr .pixel-12 {
+  animation: wave-lr-col0 900ms linear infinite;
+}
+.pixel-loader--wave-lr .pixel-1, .pixel-loader--wave-lr .pixel-5, .pixel-loader--wave-lr .pixel-9, .pixel-loader--wave-lr .pixel-13 {
+  animation: wave-lr-col1 900ms linear infinite;
+}
+.pixel-loader--wave-lr .pixel-2, .pixel-loader--wave-lr .pixel-6, .pixel-loader--wave-lr .pixel-10, .pixel-loader--wave-lr .pixel-14 {
+  animation: wave-lr-col2 900ms linear infinite;
+}
+.pixel-loader--wave-lr .pixel-3, .pixel-loader--wave-lr .pixel-7, .pixel-loader--wave-lr .pixel-11, .pixel-loader--wave-lr .pixel-15 {
+  animation: wave-lr-col3 900ms linear infinite;
+}
+
+/* Line (Plus/Cross): [1,5,6,9] center plus, pulse */
+.pixel-loader--line-mid .pixel-1, .pixel-loader--line-mid .pixel-5, .pixel-loader--line-mid .pixel-6, .pixel-loader--line-mid .pixel-9 {
+  animation: line-pulse 900ms ease-in-out infinite;
+}
+
+/* Plus: [5,9,10] small T-shape, pulse */
+.pixel-loader--plus .pixel-5, .pixel-loader--plus .pixel-9, .pixel-loader--plus .pixel-10 {
+  animation: plus-pulse 1000ms ease-in-out infinite;
+}
+
+/* Sparse: [2,6] L-shape top-right, pulse together */
+.pixel-loader--sparse .pixel-2, .pixel-loader--sparse .pixel-6 {
+  animation: sparse-pulse 800ms ease-in-out infinite;
+}
+
+/* Scorners: [0,5] pulse */
+.pixel-loader--scorners .pixel-0, .pixel-loader--scorners .pixel-5 {
+  animation: scorners-pulse 1000ms ease-in-out infinite;
+}
+
+/* Wave-TB: rows sweep top to bottom */
+.pixel-loader--wave-tb .pixel-0, .pixel-loader--wave-tb .pixel-1, .pixel-loader--wave-tb .pixel-2, .pixel-loader--wave-tb .pixel-3 {
+  animation: wave-tb-row0 900ms linear infinite;
+}
+.pixel-loader--wave-tb .pixel-4, .pixel-loader--wave-tb .pixel-5, .pixel-loader--wave-tb .pixel-6, .pixel-loader--wave-tb .pixel-7 {
+  animation: wave-tb-row1 900ms linear infinite;
+}
+.pixel-loader--wave-tb .pixel-8, .pixel-loader--wave-tb .pixel-9, .pixel-loader--wave-tb .pixel-10, .pixel-loader--wave-tb .pixel-11 {
+  animation: wave-tb-row2 900ms linear infinite;
+}
+.pixel-loader--wave-tb .pixel-12, .pixel-loader--wave-tb .pixel-13, .pixel-loader--wave-tb .pixel-14, .pixel-loader--wave-tb .pixel-15 {
+  animation: wave-tb-row3 900ms linear infinite;
+}
+
+/* Striangle: [6,10,11,15] staircase, sequential build */
+.pixel-loader--striangle .pixel-15 { animation: stri-1 1200ms linear infinite; }
+.pixel-loader--striangle .pixel-11 { animation: stri-2 1200ms linear infinite; }
+.pixel-loader--striangle .pixel-10 { animation: stri-3 1200ms linear infinite; }
+.pixel-loader--striangle .pixel-6 { animation: stri-4 1200ms linear infinite; }
+
+/* Spiral: [10,14,15] L-shape bottom-right, pulse */
+.pixel-loader--spiral .pixel-10, .pixel-loader--spiral .pixel-14, .pixel-loader--spiral .pixel-15 {
+  animation: spiral-pulse 1100ms ease-in-out infinite;
 }
 
 /* 3×3 minimal pixel loaders (12×12px) */
