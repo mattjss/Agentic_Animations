@@ -1,29 +1,27 @@
 "use client"
 
 import AnimationCard from "@/components/ui/AnimationCard"
-import Frame from "@/components/loaders/Frame"
-import LTL from "@/components/loaders/LTL"
-import WaveLR from "@/components/loaders/WaveLR"
-import PlusRed from "@/components/loaders/PlusRed"
-import Sparse from "@/components/loaders/Sparse"
-import Scorners from "@/components/loaders/Scorners"
-import LineMid from "@/components/loaders/LineMid"
-import WaveTB from "@/components/loaders/WaveTB"
-import Striangle from "@/components/loaders/Striangle"
-import Spiral from "@/components/loaders/Spiral"
+import UnicodeBrailleLoader from "@/components/loaders/UnicodeBrailleLoader"
+import type { BrailleSpinnerName } from "unicode-animations"
 
-const animations = [
-  { icon: <Frame />, state: "Loading", animation: "Frame" },
-  { icon: <WaveTB />, state: "Building", animation: "Wave-TB" },
-  { icon: <WaveLR />, state: "Analyzing", animation: "Wave-LR" },
-  { icon: <LTL />, state: "Processing", animation: "L-TL" },
-  { icon: <PlusRed />, state: "Fetching", animation: "Plus" },
-  { icon: <Sparse />, state: "Compiling", animation: "Sparse" },
-  { icon: <Scorners />, state: "Executing", animation: "Scorners" },
-  { icon: <LineMid />, state: "Syncing", animation: "Line" },
-  { icon: <Striangle />, state: "Streaming", animation: "Striangle" },
-  { icon: <Spiral />, state: "Complete", animation: "Spiral" },
+const UNICODE_ANIMATIONS: { name: BrailleSpinnerName; state: string; animation: string }[] = [
+  { name: "braille", state: "Loading", animation: "Braille" },
+  { name: "braillewave", state: "Building", animation: "Braille Wave" },
+  { name: "dna", state: "Analyzing", animation: "DNA" },
+  { name: "scan", state: "Processing", animation: "Scan" },
+  { name: "rain", state: "Fetching", animation: "Rain" },
+  { name: "pulse", state: "Compiling", animation: "Pulse" },
+  { name: "snake", state: "Executing", animation: "Snake" },
+  { name: "sparkle", state: "Syncing", animation: "Sparkle" },
+  { name: "orbit", state: "Streaming", animation: "Orbit" },
+  { name: "breathe", state: "Complete", animation: "Breathe" },
 ]
+
+const animations = UNICODE_ANIMATIONS.map(({ name, state, animation }) => ({
+  icon: <UnicodeBrailleLoader name={name} />,
+  state,
+  animation,
+}))
 
 export default function Home() {
   return (
