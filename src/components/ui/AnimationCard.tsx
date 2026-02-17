@@ -54,7 +54,7 @@ export default function AnimationCard({ icon, state, animation, variant = "dark"
           className="text-xs whitespace-nowrap"
           style={{ color: isLight ? "#3a3a3a" : "#C6C6C6" }}
         >
-          · {animation}
+          {animation}
         </span>
       </div>
     </div>
